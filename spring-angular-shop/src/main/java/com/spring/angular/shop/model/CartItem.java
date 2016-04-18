@@ -1,5 +1,7 @@
 package com.spring.angular.shop.model;
 
+import com.spring.angular.shop.util.KeyGenerator;
+
 public class CartItem {
 
 	private String id;
@@ -8,6 +10,10 @@ public class CartItem {
 	private String productName;
 	private Double productPrice;
 	private Integer quantity;
+	
+	public CartItem() {
+		this.id = KeyGenerator.generate();
+	}
 	
 	public String getId() {
 		return id;

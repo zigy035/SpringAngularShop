@@ -28,6 +28,17 @@
 		WHERE ci.id = #{itemId}
 	</select>
 	
+	<select id="getCartItem" resultMap="cartItemResultMap">
+		SELECT ci.id, ci.cart_id, ci.quantity 
+		FROM cart_item AS ci 
+		WHERE ci.product_id = #{productId} AND ci.cart_id = #{cartId}
+	</select>
+	
+	<insert id="addCartItem">
+		INSERT INTO cart_item VALUES 
+		(#{id}, #{cartId}, #{productId}, #{quantity})
+	</insert>
+	
 	<update id="updateItem">
 		UPDATE cart_item
 		SET quantity = #{quantity}

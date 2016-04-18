@@ -14,9 +14,9 @@
 	</script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/styles/js/app.js"></script>
 </head>
-<body>
+<body ng-app="shopApp">
 	<h2>Cart Page</h2>
-	<div ng-app="cartApp" ng-controller="cartController">
+	<div ng-controller="cartController">
 		<table class="stripeMe sample">
 			<thead>
 				<tr>
@@ -31,15 +31,27 @@
 					<td>{{cartItem.productName}}</td>
 					<td>{{cartItem.productPrice}}</td>
 					<td>
-						<input type="text" ng-model="cartItem.quantity" 
+						<input type="text" class="qty" ng-model="cartItem.quantity" 
 							ng-blur="updateCartItem(cartItem.id, cartItem.quantity)"/>
 						<br/>
-						<a href="javascript:void(0)" ng-click="deleteCartItem(cartItem.id)">Remove</a>
+						<a class="removeItem" href="javascript:void(0)" ng-click="deleteCartItem(cartItem.id)">Remove</a>
 					</td>
-					<td>{{cartItem.productPrice * cartItem.quantity | currency:2}}</td>
+					<td>{{cartItem.productPrice * cartItem.quantity | number:2}}</td>
 				</tr>
 			</tbody>
 		</table>
+		
+		<div class="productGrid">
+			<div class="productItem" ng-repeat="product in products">
+				<img src="<%=request.getContextPath()%>/styles/images/product_na.gif"/>
+				<p>{{product.name}}</p>
+				<p>{{product.price}}</p>
+				<form ng-submit="addCartItem('CART1', product.id)" method="post">
+					<input type="submit" class="btn" value="Add to Cart"/>
+				</form>
+			</div>
+		</div>
 	</div>
+	
 </body>
 </html>

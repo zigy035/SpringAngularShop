@@ -289,3 +289,66 @@ span.error, p.error { color:red; }
 	font-weight: bold;
 	text-transform: uppercase;
 }
+
+.qty {
+	text-align: center;
+	width: 50px;
+}
+
+.removeItem {
+	float: left;
+    padding: 4px !important;
+}
+
+
+.productGrid {
+	margin-left: 24px;
+}
+
+.productItem {
+	float: left;
+	border: 1px solid #ccc;
+	width: 150px;
+	box-sizing: border-box;
+}
+
+.productItem img {
+	width: 100%;
+}
+
+.productItem p {
+	text-align: center;
+}
+
+.button {
+	font: bold 11px Arial;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	background-color: #0099cc;
+	color: #fff;
+	padding: 6px 2px;
+	border: 1px solid #0099cc;
+	float: left;
+    width: 97%;
+}
+
+.btn {
+	font: bold 11px Arial;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	background-color: #0099cc;
+	color: #fff;
+	padding: 6px 2px;
+	border: 1px solid #0099cc;
+	float: left;
+    width: 100%;
+}
+
+
+
+
+
+
+

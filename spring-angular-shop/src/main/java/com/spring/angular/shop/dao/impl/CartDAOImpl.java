@@ -1,6 +1,8 @@
 package com.spring.angular.shop.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
@@ -27,6 +29,19 @@ public class CartDAOImpl extends SqlSessionDaoSupport implements CartDAO {
 	@Override
 	public void deleteItem(CartItem item) {
 		getSqlSession().delete("deleteItem", item);
+	}
+
+	@Override
+	public CartItem getCartItem(String cartId, String productId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("cartId", cartId);
+		params.put("productId", productId);
+		return getSqlSession().selectOne("getCartItem", params);
+	}
+
+	@Override
+	public void addCartItem(CartItem item) {
+		getSqlSession().insert("addCartItem", item);
 	}
 
 }

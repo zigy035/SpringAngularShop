@@ -38,6 +38,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:sqlmaps/CartItem.xml</value>
+				<value>classpath:sqlmaps/Product.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -45,6 +46,11 @@
 	<bean id="cartDAO" class="com.spring.angular.shop.dao.impl.CartDAOImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
+	
+	<bean id="productDAO" class="com.spring.angular.shop.dao.impl.ProductDAOImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
 	
 	<!-- <bean id="theatreService" class="com.mycinema.web.service.TheatreServiceImpl">
 		<property name="theatreDAO" ref="theatreDAO"/>

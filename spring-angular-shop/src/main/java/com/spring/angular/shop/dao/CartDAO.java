@@ -13,4 +13,8 @@ public interface CartDAO {
 	void updateItem(CartItem item);
 
 	void deleteItem(CartItem item);
+
+	CartItem getCartItem(String cartId, String productId);
+
+	void addCartItem(CartItem item);
 }
