@@ -20,6 +20,11 @@ public class ProductController {
 	@Autowired
 	private ProductDAO productDAO; 
 	
+	@RequestMapping("/layout")
+    public String getCartContentPage() {
+        return "layout/product";
+    }
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Product>> loadAllProducts() {
 		

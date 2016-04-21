@@ -1,20 +1,20 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<!-- 
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/css/jquery-ui.min.css"/>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/styles/js/jquery-1.12.1.min.js"></script>		
-	<script type="text/javascript" src="<%=request.getContextPath()%>/styles/js/jquery-ui.min.js"></script>
-	 -->
-
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/css/style.css"/>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/styles/js/angular.min.js"></script>
-	<script type="text/javascript">
-		var baseURL = "${pageContext.request.contextPath}";
-	</script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/styles/js/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles/css/style.css"/>
+	<script type="text/javascript" src="styles/js/angular.min.js"></script>
+	<script type="text/javascript" src="styles/js/app.js"></script>
 </head>
 <body ng-app="shopApp">
+	
+	<h2>Evo gaaaa</h2>
+	
+	<h1>CoolShop</h1>
+<!-- 	<a href="#/product">Product</a> | <a href="#/cart">Cart</a> -->
+	<a href="javascript:void(0)" ui-sref="product">Prods</a>
+	<div ui-view></div>
+	
+
 	<h2>Cart Page</h2>
 	<div ng-controller="cartController">
 		<table class="stripeMe sample">

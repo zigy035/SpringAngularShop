@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="styles/css/style.css"/>
+</head>
+<body ng-app="shopApp">
+	
+	<div id="wrapper">
+		<div id="header">
+			<div id="nav">
+				<h1>CoolShop HTML Page</h1>
+				<a href="#/product">Products</a> | <a href="#/cart">Cart</a>
+			</div>
+		</div>
+		<div id="main">
+			<div ng-view=""></div>
+		</div>
+		<div id="footer">
+			<p>Copyright &copy; 2016 CoolShop.com</p>
+		</div>
+	</div>
+	
+	<script src="styles/js/angular.min.js"></script>
+	<script src="styles/js/angular-route.min.js"></script>
+	<script src="styles/js/app.js"></script>
+<!-- 	<script src="styles/js/directives.js"></script> -->
+	<script src="styles/js/controllers/CartController.js"></script>
+	<script src="styles/js/controllers/ProductController.js"></script>
+	
+</body>
+</html>

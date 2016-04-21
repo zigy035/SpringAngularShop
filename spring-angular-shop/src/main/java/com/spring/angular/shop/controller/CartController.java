@@ -26,8 +26,13 @@ public class CartController {
 	@Autowired
 	private ProductDAO productDAO;
 	
+	@RequestMapping("/layout")
+    public String getCartContentPage() {
+        return "layout/cart";
+    }
+	
 	// This should be a part of Product Controller (after ng-view is implemented)
-	@RequestMapping(value="/products", method = RequestMethod.GET)
+	/*@RequestMapping(value="/products", method = RequestMethod.GET)
 	public ResponseEntity<List<Product>> loadProductData() {
 		
 		List<Product> products = productDAO.getProducts();
@@ -35,12 +40,12 @@ public class CartController {
             return new ResponseEntity<List<Product>>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
-	}
+	}*/
 	
-	@RequestMapping(value="/{cartId}", method = RequestMethod.GET)
-	public ResponseEntity<List<CartItem>> loadCartData(@PathVariable("cartId") String cartId) {
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CartItem>> loadCartData() {
 		
-		List<CartItem> cartData = cartDAO.getCart(cartId);
+		List<CartItem> cartData = cartDAO.getCart("CART1");
         if (CollectionUtils.isEmpty(cartData)) {
             return new ResponseEntity<List<CartItem>>(HttpStatus.NOT_FOUND);
         }

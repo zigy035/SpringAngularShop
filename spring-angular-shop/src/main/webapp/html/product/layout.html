@@ -1,0 +1,14 @@
+<h2>Product List</h2>
+<!-- <div ng-controller="productController"> -->
+<div>
+	<div class="productGrid">
+		<div class="productItem" ng-repeat="product in products">
+			<img src="styles/images/product_na.gif"/>
+			<p>{{product.name}}</p>
+			<p>{{product.price}}</p>
+			<form ng-submit="addCartItem('CART1', product.id)" method="post">
+				<input type="submit" class="btn" value="Add to Cart"/>
+			</form>
+		</div>
+	</div>
+</div>

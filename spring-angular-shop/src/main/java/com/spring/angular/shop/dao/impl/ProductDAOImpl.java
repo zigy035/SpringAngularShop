@@ -9,6 +9,10 @@ import com.spring.angular.shop.model.Product;
 
 public class ProductDAOImpl extends SqlSessionDaoSupport implements ProductDAO {
 
+	/*public ProductDAOImpl() {
+		super();
+	}*/
+	
 	@Override
 	public List<Product> getProducts() {
 		return getSqlSession().selectList("getProducts");
