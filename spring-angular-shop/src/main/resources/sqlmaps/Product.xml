@@ -17,29 +17,4 @@
 		FROM product AS p 
 	</select>
 
-	<!-- <select id="getCartProduct" resultMap="productResultMap">
-		SELECT p.id, p.name, p.description, p.price 
-		FROM product AS p 
-			JOIN cart_item AS ci ON ci.product_id = p.id
-		WHERE ci.
-	</select> -->
-	
-	
-<!-- 	<select id="getItem" resultMap="productResultMap">
-		SELECT ci.id, ci.cart_id, ci.quantity 
-		FROM cart_item AS ci 
-		WHERE ci.id = #{itemId}
-	</select>
-	
-	<update id="updateItem">
-		UPDATE cart_item
-		SET quantity = #{quantity}
-		WHERE id = #{id}
-	</update>
-	
-	<delete id="deleteItem">
-		DELETE FROM cart_item
-		WHERE id = #{id} 
-	</delete>
- -->	
 </mapper>

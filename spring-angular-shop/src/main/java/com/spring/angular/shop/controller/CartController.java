@@ -12,48 +12,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.angular.shop.dao.CartDAO;
-import com.spring.angular.shop.dao.ProductDAO;
 import com.spring.angular.shop.model.CartItem;
-import com.spring.angular.shop.model.Product;
 
 @RestController
 @RequestMapping("/cart")
 public class CartController {
 
+	private static final String CURRENT_CART_ID = "CART1";
+	
 	@Autowired
 	private CartDAO cartDAO;
 	
-	@Autowired
-	private ProductDAO productDAO;
-	
-	// This should be a part of Product Controller (after ng-view is implemented)
-	@RequestMapping(value="/products", method = RequestMethod.GET)
-	public ResponseEntity<List<Product>> loadProductData() {
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CartItem>> loadCartData() {
 		
-		List<Product> products = productDAO.getProducts();
-        if (CollectionUtils.isEmpty(products)) {
-            return new ResponseEntity<List<Product>>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
-	}
-	
-	@RequestMapping(value="/{cartId}", method = RequestMethod.GET)
-	public ResponseEntity<List<CartItem>> loadCartData(@PathVariable("cartId") String cartId) {
-		
-		List<CartItem> cartData = cartDAO.getCart(cartId);
+		List<CartItem> cartData = cartDAO.getCart(CURRENT_CART_ID);
         if (CollectionUtils.isEmpty(cartData)) {
             return new ResponseEntity<List<CartItem>>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<List<CartItem>>(cartData, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/add/{cartId}/{productId}", method = RequestMethod.POST)
-    public ResponseEntity<CartItem> addItem(@PathVariable("cartId") String cartId, @PathVariable("productId") String productId) {
+	@RequestMapping(value = "/add/{productId}", method = RequestMethod.POST)
+    public ResponseEntity<CartItem> addItem(@PathVariable("productId") String productId) {
 		
-		CartItem cartItem = cartDAO.getCartItem(cartId, productId);
+		CartItem cartItem = cartDAO.getCartItem(CURRENT_CART_ID, productId);
 		if (cartItem == null) {
 			CartItem newCartItem = new CartItem();
-			newCartItem.setCartId(cartId);
+			newCartItem.setCartId(CURRENT_CART_ID);
 			newCartItem.setProductId(productId);
 			newCartItem.setQuantity(1);
 			cartDAO.addCartItem(newCartItem);
