@@ -53,8 +53,8 @@ p {
 }
     
 #nav {
-	margin-left:10px;
-	width: 750px;
+/* 	margin-left:10px; */
+	width: 680px;
 	color: #fff;
 }
 
@@ -148,7 +148,8 @@ p {
 	text-transform:uppercase;
 }
 
-#nav > a {
+#nav a {
+	font-size: 16px;
 	color: #fff;
 	text-decoration:none;
 	text-transform:uppercase;
@@ -221,20 +222,75 @@ table.sample tr.even td {
 	background: #bcd4ec;
 }
 
-input.error, select.error, { border-color:red; }
-span.error, p.error { color:red; }
+input.error, select.error 
+{ 
+	border-color:red;
+}
+
+span.error, p.error { 
+	color:red; 
+}
 
 .form_content {
 	font-family: Open Sans,sans-serif;
-	border: 1px solid #0099cc;
-	background-color: #ECF6FC;
-	width: 450px;
-	margin: 24px;
+/* 	border: 1px solid #0099cc; */
+/* 	background-color: #ECF6FC; */
+	width: 33%;
+/* 	margin: 5px; */
+	float: left;
+}
+
+.register_btn {
+	float: left;
+	width: 500px !important;
+	width: 34%;
+	margin: 5px 0 10px 30px;
+}
+
+.register_btn p {
+	font-size: 14px;
+	padding: 0 0 0 30px;
+	width: 200px;
+}
+
+.register_btn input[type="submit"] {	
+ 	padding: 4px;
+	width: 100px;
+	background-color: #0099cc;
+	border-color: #0099cc;
+	color: #ECF6FC;
+	height: 30px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.register_btn p input[type="checkbox"] {	
+	width: 15px;
+}
+
+.register_btn label {
+	font-size: 14px;
+}
+
+.register_btn span {
+	color:red;
+	font-size: 12px;
+	font-style: italic;
+}
+
+
+.form_content_border {
+	border-right: 1px solid #0099cc;
+}
+
+.form_content h3 {
+	padding: 0 0 0 20px;
 }
 
 .form_content p {
 	font-size: 14px;
-	padding: 5px;
+	padding: 0 0 0 30px;
+	width: 200px;
 }
 
 .form_content form {
@@ -262,7 +318,7 @@ span.error, p.error { color:red; }
 	font: 14px Arial, Sand-Serif;
 	font-size: 14px;
 	padding: 4px;
-	width: 200px;
+	width: 160px;
 	color: #000;
 }
 
@@ -271,6 +327,7 @@ span.error, p.error { color:red; }
   	color: red;
 	font-size: 12px;
   	font-style: italic;
+  	float: left;
 }
 
 .form_content p textarea {
@@ -346,7 +403,10 @@ span.error, p.error { color:red; }
     width: 100%;
 }
 
-
+.content_right {
+	float: right;
+	margin-right: -10px;
+}
 
 
 

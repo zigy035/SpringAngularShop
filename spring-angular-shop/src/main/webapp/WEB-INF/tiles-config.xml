@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+    <definition name="baseLayout" template="/resources/templates/layout.jsp">    
+        <put-attribute name="title" value="" />
+        <put-attribute name="headerscript" value="/resources/templates/headerscript.jsp" />
+        <put-attribute name="header" value="/resources/templates/header.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/resources/templates/footer.jsp" />
+    </definition>
+
+	<definition name="home" extends="baseLayout">
+        <put-attribute name="title" value="Home Page" />
+        <put-attribute name="body" value="/resources/pages/home.jsp" />
+    </definition>
+
+	<definition name="register" extends="baseLayout">
+        <put-attribute name="title" value="Registration Form" />
+        <put-attribute name="body" value="/resources/pages/register.jsp" />
+    </definition>
+
+	<definition name="confirmRegistration" extends="baseLayout">
+        <put-attribute name="title" value="Confirm Registration" />
+        <put-attribute name="body" value="/resources/pages/confirmRegistration.jsp" />
+    </definition>
+	
+ 	<definition name="login" extends="baseLayout">
+        <put-attribute name="title" value="Login Page" />
+        <put-attribute name="body" value="/resources/pages/login.jsp" />
+    </definition>
+    
+    <definition name="productList" extends="baseLayout">
+        <put-attribute name="title" value="Product List" />
+        <put-attribute name="body" value="/resources/pages/products.jsp" />
+    </definition>
+    
+    <definition name="cart" extends="baseLayout">
+        <put-attribute name="title" value="Cart Page" />
+        <put-attribute name="body" value="/resources/pages/cart.jsp" />
+    </definition>
+
+    <definition name="myAccount" extends="baseLayout">
+        <put-attribute name="title" value="My Account" />
+        <put-attribute name="body" value="/resources/pages/myaccount.jsp" />
+    </definition>    
+    
+    <definition name="error" extends="baseLayout">
+    	<put-attribute name="title" value="Error Page" />
+	    <put-attribute name="body" value="/resources/pages/error.jsp"/>
+	</definition>
+     
+</tiles-definitions>

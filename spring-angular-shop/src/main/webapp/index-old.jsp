@@ -11,6 +11,8 @@
 			<div id="nav">
 				<h1>CoolShop</h1>
 				<a href="#/product">Products</a> | <a href="#/cart">Cart</a>
+				<span ng-show="!isAuthUser">| <a href="#/login">Login</a></span>
+				<span ng-show="isAuthUser">| <a href="#/logout">Logout</a></span>
 			</div>
 		</div>
 		<div id="main">
@@ -26,6 +28,7 @@
 	<script src="resources/js/app.js"></script>
 	<script src="resources/js/controllers/CartController.js"></script>
 	<script src="resources/js/controllers/ProductController.js"></script>
+	<script src="resources/js/controllers/LoginController.js"></script>
 	
 </body>
 </html>

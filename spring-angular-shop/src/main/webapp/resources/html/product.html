@@ -1,5 +1,11 @@
 <h2>Products</h2>
 <div>
+
+	<p ng-show="isAuthUser">Auth User</p>
+	<p ng-show="!isAuthUser">Not Auth User</p>
+	
+	<h3>{{isAuthUser}}</h3>
+	
 	<div class="productGrid">
 		<div class="productItem" ng-repeat="product in products">
 			<img src="resources/images/product_na.gif"/>

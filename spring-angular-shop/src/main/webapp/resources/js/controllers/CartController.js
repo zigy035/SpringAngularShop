@@ -1,9 +1,10 @@
 'use strict';
 
-var CartController = function($scope, $http) {
+var cartApp = angular.module('cartApp', []);
+cartApp.controller('cartController', function($scope, $http) {
 	
 	$scope.loadCartData = function() {	
-		$http({method: 'GET', url: "cart"}).
+		$http({method: 'GET', url: "cart-rest"}).
 		then(function(response) {
 			console.log('Cart data!!!');
 			$scope.cartData = response.data;
@@ -11,7 +12,7 @@ var CartController = function($scope, $http) {
 	};
 
     $scope.updateCartItem = function(itemId, quantity) {
-		$http({method: 'PUT', url: "cart/update/" +  itemId + "/" + quantity}).
+		$http({method: 'PUT', url: "cart-rest/update/" +  itemId + "/" + quantity}).
 		then(function(response) {
 			$scope.loadCartData();
 		},
@@ -22,7 +23,7 @@ var CartController = function($scope, $http) {
     };
 
     $scope.deleteCartItem = function(itemId) {
-		$http({method: 'DELETE', url: "cart/delete/" +  itemId}).
+		$http({method: 'DELETE', url: "cart-rest/delete/" +  itemId}).
 		then(function(response) {
 			$scope.loadCartData();
 		});
@@ -30,4 +31,4 @@ var CartController = function($scope, $http) {
 
     $scope.loadCartData();
     
-};
+});

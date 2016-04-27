@@ -19,7 +19,8 @@ CREATE TABLE `cart` (
   `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `customer_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cart_unique_key`(`id`, `customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `cart_item` (
@@ -57,3 +58,17 @@ CREATE TABLE `product` (
   `price` decimal(5,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `country` (
+  `code` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `region` (
+  `code` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `iso_code` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+

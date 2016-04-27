@@ -35,8 +35,11 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
 			<list>
+				<value>classpath:sqlmaps/Address.xml</value>
+				<value>classpath:sqlmaps/Cart.xml</value>
 				<value>classpath:sqlmaps/CartItem.xml</value>
 				<value>classpath:sqlmaps/Product.xml</value>
+				<value>classpath:sqlmaps/Customer.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -47,6 +50,33 @@
 	
 	<bean id="productDAO" class="com.spring.angular.shop.dao.impl.ProductDAOImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="addressDAO" class="com.spring.angular.shop.dao.impl.AddressDAOImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="authenticationDAO" class="com.spring.angular.shop.dao.impl.AuthenticationDAOImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="cartService" class="com.spring.angular.shop.service.impl.CartServiceImpl">
+		<property name="cartDAO" ref="cartDAO"/>
+	</bean>
+	
+	<bean id="addressService" class="com.spring.angular.shop.service.impl.AddressServiceImpl">
+		<property name="addressDAO" ref="addressDAO"/>
+	</bean>
+	
+	<bean id="customerValidator" class="com.spring.angular.shop.validator.CustomerValidator">
+	</bean>
+
+	<bean id="authenticationService" class="com.spring.angular.shop.service.impl.AuthenticationServiceImpl">
+		<property name="authenticationDAO" ref="authenticationDAO" />
+	</bean>
+		
+	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+		<constructor-arg value="1" />
 	</bean>
 
 </beans>

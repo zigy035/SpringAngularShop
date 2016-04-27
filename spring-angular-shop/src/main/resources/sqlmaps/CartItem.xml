@@ -14,7 +14,7 @@
 		<result property="quantity" column="quantity" jdbcType="INTEGER" />
 	</resultMap>
 
-	<select id="getCart" resultMap="cartItemResultMap">
+	<select id="getCartItems" resultMap="cartItemResultMap">
 		SELECT ci.id, ci.cart_id, p.id AS product_id, p.name AS product_name, 
 			p.price AS product_price, ci.quantity 
 		FROM cart_item AS ci 
@@ -34,7 +34,7 @@
 		WHERE ci.product_id = #{productId} AND ci.cart_id = #{cartId}
 	</select>
 	
-	<insert id="addCartItem">
+	<insert id="addItem">
 		INSERT INTO cart_item VALUES 
 		(#{id}, #{cartId}, #{productId}, #{quantity})
 	</insert>

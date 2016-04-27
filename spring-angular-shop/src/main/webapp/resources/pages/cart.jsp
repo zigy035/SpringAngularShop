@@ -1,8 +1,6 @@
-<h2>Cart</h2>
-<div>
-	
-	<p>{{session}}</p>
-
+<h2>Products</h2>
+<div ng-app="cartApp" ng-controller="cartController">
+		
 	<table class="stripeMe sample">
 		<thead>
 			<tr>
@@ -26,4 +24,7 @@
 			</tr>
 		</tbody>
 	</table>
+	
+	<script src="resources/js/controllers/CartController.js"></script>
+	
 </div>

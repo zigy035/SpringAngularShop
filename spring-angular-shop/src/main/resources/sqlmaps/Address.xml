@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="addressMap">
+	
+	<resultMap id="countryResultMap" type="com.spring.angular.shop.model.Country">
+		<result property="code" column="code" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="regionResultMap" type="com.spring.angular.shop.model.Region">
+		<result property="code" column="code" jdbcType="VARCHAR" />
+		<result property="isoCode" column="iso_code" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getCountries" resultMap="countryResultMap">
+		SELECT c.code, c.name 
+		FROM country AS c 
+	</select>
+
+	<select id="getRegions" resultMap="regionResultMap">
+		SELECT r.code, r.iso_code, r.name 
+		FROM region AS r
+		WHERE r.iso_code = #{isoCode}
+		ORDER BY r.name 
+	</select>
+
+</mapper>

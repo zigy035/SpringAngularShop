@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cartMap">
+	
+	<resultMap id="cartResultMap" type="com.spring.angular.shop.model.Cart">
+		<result property="id" column="id" jdbcType="VARCHAR" />
+		<result property="customerId" column="customer_id" jdbcType="VARCHAR" />
+		<result property="created" column="created" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="getCart" resultMap="cartResultMap">
+		SELECT c.id, c.customer_id, c.created 
+		FROM cart AS c 
+		WHERE c.customer_id = #{customerId}
+	</select>
+		
+	<insert id="createCart">
+		INSERT INTO cart VALUES 
+		(#{id}, #{customerId}, #{created})
+	</insert>
+	
+	<delete id="deleteCart">
+		DELETE FROM cart
+		WHERE id = #{id} 
+	</delete>
+	
+</mapper>
