@@ -4,10 +4,13 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import com.spring.angular.shop.dao.CustomerDAO;
 import com.spring.angular.shop.form.RegisterForm;
 
 public class CustomerValidator implements Validator {
-
+	
+	private CustomerDAO customerDAO;
+	
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return RegisterForm.class.equals(clazz);
@@ -17,6 +20,11 @@ public class CustomerValidator implements Validator {
 	public void validate(Object object, Errors errors) {
 		RegisterForm form = (RegisterForm) object;
 		
+		/*		
+ 		if (StringUtils.isBlank(form.getTitle())) {
+			errors.rejectValue("title", "title.required");
+		}
+		*/		
 		if (StringUtils.isBlank(form.getFirstName())) {
 			errors.rejectValue("firstName", "firstname.required");
 		}
@@ -25,6 +33,8 @@ public class CustomerValidator implements Validator {
 		}
 		if (StringUtils.isBlank(form.getEmail())) {
 			errors.rejectValue("email", "email.required");
+		} else if (customerDAO.getCustomerByEmail(form.getEmail()) != null) {
+			errors.rejectValue("email", "email.exist");
 		}
 		if (StringUtils.isBlank(form.getPassword())) {
 			errors.rejectValue("password", "password.required");
@@ -67,6 +77,11 @@ public class CustomerValidator implements Validator {
 			errors.rejectValue("acceptTerms", "billing.acceptterms.required");
 		}
 		
+	}
+
+	// Inject CustomerDAO
+	public void setCustomerDAO(CustomerDAO customerDAO) {
+		this.customerDAO = customerDAO;
 	}
 
 }

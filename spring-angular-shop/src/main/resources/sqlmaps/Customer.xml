@@ -12,7 +12,7 @@
 		<result property="lastName" column="last_name" jdbcType="VARCHAR" />
 		<result property="email" column="email" jdbcType="VARCHAR" />
 		<result property="password" column="password" jdbcType="VARCHAR" />
-		<result property="access" column="access" jdbcType="INTEGER" />
+		<result property="access" column="access" jdbcType="BOOLEAN" />
 	</resultMap>
 
 	<select id="getCustomerByEmail" resultMap="customerResultMap">
@@ -20,5 +20,10 @@
 		FROM customer AS c 
 		WHERE c.email = #{email}
 	</select>
+	
+	<insert id="addCustomer">
+		INSERT INTO customer VALUES 
+		(#{id}, #{title}, #{firstName}, #{lastName}, #{email}, #{password}, #{access})
+	</insert>
 
 </mapper>

@@ -3,6 +3,28 @@
 var addressApp = angular.module('addressApp', ['ngCookies']);
 addressApp.controller('addressController', function($scope, $http, $cookieStore) {
 
+	$scope.loadTitles = function() {
+		$http({method: 'GET', url: "address-rest/titles"}).
+		then(function(response) {
+			$scope.titles = response.data;
+			console.log('Titleees: ' + response.data);
+			
+			var title = $cookieStore.get('title');
+			console.log('Current Title: ' + title);
+			
+			if (title != undefined) {
+				$scope.title = title;
+			} else {
+				$scope.title = '';
+			}
+		});
+	};
+	
+	$scope.storeTitleData = function(title) {
+		console.log('Changed Title to: ' + title);
+		$cookieStore.put('title', title);
+	};
+	
 	// Shipping Country Region
 	$scope.loadShippingCountries = function() {	
 		$http({method: 'GET', url: "address-rest/countries"}).
@@ -106,6 +128,7 @@ addressApp.controller('addressController', function($scope, $http, $cookieStore)
 	
 	
 	// Load Countries/Regions	
+	$scope.loadTitles();
 	$scope.loadShippingCountries();
 	$scope.loadBillingCountries();
 	

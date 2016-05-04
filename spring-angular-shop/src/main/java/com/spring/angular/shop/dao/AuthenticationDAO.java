@@ -6,6 +6,6 @@ public interface AuthenticationDAO
 {
 	public Customer getAuthentication(String username);
 	
-	public void addCustomer(Customer customer);
+//	public void addCustomer(Customer customer);
 	
 }

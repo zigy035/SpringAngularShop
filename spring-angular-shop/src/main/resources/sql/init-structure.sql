@@ -1,17 +1,19 @@
 CREATE TABLE `address` (
   `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `customer_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `postcode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_line` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `country_iso` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `region_iso` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `province` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `is_contact` tinyint(2) NOT NULL,
-  `is_billing` tinyint(2) NOT NULL,
-  `is_shipping` tinyint(2) NOT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `postcode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contact_address` tinyint(2) NOT NULL,
+  `billing_address` tinyint(2) NOT NULL,
+  `shipping_address` tinyint(2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -57,6 +59,13 @@ CREATE TABLE `product` (
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `price` decimal(5,2) NOT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `title` (
+  `code` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `order_number` tinyint(4) NOT NULL,
+  PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `country` (

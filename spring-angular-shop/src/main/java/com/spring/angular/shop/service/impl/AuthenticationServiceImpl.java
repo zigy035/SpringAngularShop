@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -18,16 +23,17 @@ import com.spring.angular.shop.service.AuthenticationService;
 
 public class AuthenticationServiceImpl implements AuthenticationService
 {
-	protected static Logger logger = Logger.getLogger(AuthenticationServiceImpl.class);
+	protected static Logger LOG = Logger.getLogger(AuthenticationServiceImpl.class);
 	
 	private AuthenticationDAO authenticationDAO;
+	private ShaPasswordEncoder passwordEncoder;
 	
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Customer dbUser = authenticationDAO.getAuthentication(username);
 		
 		if (dbUser == null)
 		{
-			logger.debug("User was not found!");
+			LOG.info("User was not found!");
 			throw new UsernameNotFoundException("User not found");			
 		}
 		
@@ -47,29 +53,57 @@ public class AuthenticationServiceImpl implements AuthenticationService
 		// Check if this user has admin access
 		if (access.compareTo(1) == 0) {
 			// User has admin access
-			logger.debug("Grant ROLE_ADMIN to this user");
+			LOG.info("Grant ROLE_ADMIN to this user");
 			authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		} else {
 			// User has an ordinary user access
-			logger.debug("Grant ROLE_USER to this user");
+			LOG.info("Grant ROLE_USER to this user");
 			authList.add(new SimpleGrantedAuthority("ROLE_USER"));
 		}
 
 		return authList;
 	}
 	
+	@Override
+	public void autoLogin(String username, String password) {
+		
+		UserDetails user;
+		try {
+	        user = loadUserByUsername(username);
+	    } catch (Exception e) {
+	    	user = null;
+	    	LOG.error("Error loading user, not found: " + e.getMessage(), e);
+	    }
+
+	    if (user == null) {
+	        throw new UsernameNotFoundException(String.format("Invalid credentials", username));
+	    } else if (!user.isEnabled()) {
+	        throw new UsernameNotFoundException(String.format("Not found enabled user for username ", username));
+	    }
+	    
+	    //check user password stored in authentication.getCredentials() against stored password hash
+	    String encodedPassword = passwordEncoder.encodePassword(password, null);
+	    if (StringUtils.isBlank(password) || !encodedPassword.equals(user.getPassword())) {
+	        throw new BadCredentialsException("Invalid credentials");
+	    }
+	    
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user, encodedPassword, user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(token);
+        LOG.info(String.format("Auto login %s successfully!", username));
+	}
+	
 	public Customer getAuthentication(String username) {
 		return authenticationDAO.getAuthentication(username);
-	}
-
-	public void addCustomer(Customer customer) {
-		authenticationDAO.addCustomer(customer);
 	}
 
 	// Inject AuthUserDAO
 	public void setAuthenticationDAO(AuthenticationDAO authenticationDAO) {
 		this.authenticationDAO = authenticationDAO;
 	}
-	
+
+	// Inject PasswordEncoder
+	public void setPasswordEncoder(ShaPasswordEncoder passwordEncoder) {
+		this.passwordEncoder = passwordEncoder;
+	}	
 
 }

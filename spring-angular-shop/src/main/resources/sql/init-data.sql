@@ -17,6 +17,13 @@ INSERT INTO `product` (`id`, `category_id`, `name`, `description`, `price`) VALU
 INSERT INTO `customer` (`id`, `title`, `first_name`, `last_name`, `email`, `password`, `access`) VALUES 
 ('CUSTOMER1', 'Mr.', 'Igor', 'Milosevic', 'imilosevic@westum.com', '78b6854e22ab09d4ae3dac29b92052963103b33e', 0);
 
+INSERT INTO `title` (`code`, `name`, `order_number`) VALUES 
+('MR',  'Mr.',   1),
+('MRS', 'Mrs',   2),
+('MS',  'Ms',    3),
+('MISS', 'Miss', 4),
+('DR', 'Dr.',    5);
+
 INSERT INTO `country` (`code`, `name`) VALUES 
 ('CA', 'Canada'),
 ('US', 'United States');

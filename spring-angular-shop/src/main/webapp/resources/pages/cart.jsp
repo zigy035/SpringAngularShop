@@ -1,7 +1,7 @@
-<h2>Products</h2>
+<h2>Cart</h2>
 <div ng-app="cartApp" ng-controller="cartController">
 		
-	<table class="stripeMe sample">
+	<table class="stripeMe sample" ng-show="cartData">
 		<thead>
 			<tr>
 				<th>Name</th>
@@ -24,6 +24,8 @@
 			</tr>
 		</tbody>
 	</table>
+	
+	<p ng-show="!cartData">Your cart is empty</p>
 	
 	<script src="resources/js/controllers/CartController.js"></script>
 	

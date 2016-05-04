@@ -12,6 +12,7 @@ public class RegisterForm {
 	private String shippingAddressLine;
 	private String shippingCountry;
 	private String shippingRegion;
+	private String shippingProvince;
 	private String shippingCity;
 	private String shippingPostcode;
 	private String shippingPhone;
@@ -19,6 +20,7 @@ public class RegisterForm {
 	private String billingAddressLine;
 	private String billingCountry;
 	private String billingRegion;
+	private String billingProvince;
 	private String billingCity;
 	private String billingPostcode;
 	private String billingPhone;
@@ -79,6 +81,12 @@ public class RegisterForm {
 	public void setShippingRegion(String shippingRegion) {
 		this.shippingRegion = shippingRegion;
 	}
+	public String getShippingProvince() {
+		return shippingProvince;
+	}
+	public void setShippingProvince(String shippingProvince) {
+		this.shippingProvince = shippingProvince;
+	}
 	public String getShippingCity() {
 		return shippingCity;
 	}
@@ -115,6 +123,12 @@ public class RegisterForm {
 	}
 	public void setBillingRegion(String billingRegion) {
 		this.billingRegion = billingRegion;
+	}
+	public String getBillingProvince() {
+		return billingProvince;
+	}
+	public void setBillingProvince(String billingProvince) {
+		this.billingProvince = billingProvince;
 	}
 	public String getBillingCity() {
 		return billingCity;

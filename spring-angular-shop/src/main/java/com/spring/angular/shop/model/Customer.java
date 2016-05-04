@@ -1,5 +1,7 @@
 package com.spring.angular.shop.model;
 
+import com.spring.angular.shop.util.KeyGenerator;
+
 public class Customer {
 	
 	private String id;
@@ -9,6 +11,10 @@ public class Customer {
 	private String email;
 	private String password;
 	private Integer access;
+	
+	public Customer() {
+		this.id = KeyGenerator.generate();
+	}
 	
 	public String getId() {
 		return id;

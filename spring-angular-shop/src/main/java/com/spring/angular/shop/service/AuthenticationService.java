@@ -8,5 +8,6 @@ public interface AuthenticationService extends UserDetailsService {
 
 	Customer getAuthentication(String username);
 	
-//	void addAuthUser(AuthUser authUser);
+	void autoLogin(String username, String password);
+	
 }

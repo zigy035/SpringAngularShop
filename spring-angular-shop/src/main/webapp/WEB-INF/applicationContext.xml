@@ -56,6 +56,10 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
+	<bean id="customerDAO" class="com.spring.angular.shop.dao.impl.CustomerDAOImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
 	<bean id="authenticationDAO" class="com.spring.angular.shop.dao.impl.AuthenticationDAOImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
@@ -68,15 +72,23 @@
 		<property name="addressDAO" ref="addressDAO"/>
 	</bean>
 	
-	<bean id="customerValidator" class="com.spring.angular.shop.validator.CustomerValidator">
+	<bean id="customerService" class="com.spring.angular.shop.service.impl.CustomerServiceImpl">
+		<property name="customerDAO" ref="customerDAO"/>
+		<property name="addressDAO" ref="addressDAO"/>
+		<property name="passwordEncoder" ref="passwordEncoder"/>
 	</bean>
-
+	
 	<bean id="authenticationService" class="com.spring.angular.shop.service.impl.AuthenticationServiceImpl">
 		<property name="authenticationDAO" ref="authenticationDAO" />
+		<property name="passwordEncoder" ref="passwordEncoder"/>
 	</bean>
 		
 	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
 		<constructor-arg value="1" />
+	</bean>
+	
+	<bean id="customerValidator" class="com.spring.angular.shop.validator.CustomerValidator">
+		<property name="customerDAO" ref="customerDAO"/>
 	</bean>
 
 </beans>

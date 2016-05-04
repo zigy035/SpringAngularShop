@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.spring.angular.shop.enumeration.TitleStatus;
 import com.spring.angular.shop.model.Customer;
 import com.spring.angular.shop.service.AuthenticationService;
 
@@ -64,10 +63,6 @@ public abstract class AbstractController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String username = auth.getName(); //get logged in username
 	    return authenticationService.getAuthentication(username);
-	}
-	
-	protected List<TitleStatus> getTitles() {
-		return Arrays.asList(TitleStatus.values());
 	}
 	
 }

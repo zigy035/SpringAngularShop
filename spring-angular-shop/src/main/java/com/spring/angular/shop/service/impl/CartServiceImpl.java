@@ -1,5 +1,6 @@
 package com.spring.angular.shop.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.spring.angular.shop.dao.CartDAO;
@@ -63,6 +64,9 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<CartItem> getCartItems(String customerId) {
 		Cart cart = cartDAO.getCart(customerId);
+		if (cart == null) {
+			return new ArrayList<CartItem>();
+		}
 		return cartDAO.getCartItems(cart.getId());
 	}
 

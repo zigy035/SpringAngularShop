@@ -5,6 +5,11 @@
 
 <mapper namespace="addressMap">
 	
+	<resultMap id="titleResultMap" type="com.spring.angular.shop.model.Title">
+		<result property="code" column="code" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+	</resultMap>
+	
 	<resultMap id="countryResultMap" type="com.spring.angular.shop.model.Country">
 		<result property="code" column="code" jdbcType="VARCHAR" />
 		<result property="name" column="name" jdbcType="VARCHAR" />
@@ -15,6 +20,30 @@
 		<result property="isoCode" column="iso_code" jdbcType="VARCHAR" />
 		<result property="name" column="name" jdbcType="VARCHAR" />
 	</resultMap>
+	
+	<resultMap id="addressResultMap" type="com.spring.angular.shop.model.Address">
+		<result property="id" column="id" jdbcType="VARCHAR" />
+		<result property="customerId" column="customer_id" jdbcType="VARCHAR" />
+		<result property="title" column="title" jdbcType="VARCHAR" />
+		<result property="firstName" column="first_name" jdbcType="VARCHAR" />
+		<result property="lastName" column="last_name" jdbcType="VARCHAR" />
+		<result property="addressLine" column="address_line" jdbcType="VARCHAR" />
+		<result property="countryIso" column="country_iso" jdbcType="VARCHAR" />
+		<result property="regionIso" column="region_iso" jdbcType="VARCHAR" />
+		<result property="province" column="province" jdbcType="VARCHAR" />
+		<result property="city" column="city" jdbcType="VARCHAR" />
+		<result property="postcode" column="postcode" jdbcType="VARCHAR" />
+		<result property="phone" column="phone" jdbcType="VARCHAR" />
+		<result property="contactAddress" column="contact_address" jdbcType="BOOLEAN" />
+		<result property="billingAddress" column="billing_address" jdbcType="BOOLEAN" />
+		<result property="shippingAddress" column="shipping_address" jdbcType="BOOLEAN" />
+	</resultMap>
+	
+	<select id="getTitles" resultMap="titleResultMap">
+		SELECT t.code, t.name 
+		FROM title AS t
+		ORDER BY t.order_number
+	</select>
 
 	<select id="getCountries" resultMap="countryResultMap">
 		SELECT c.code, c.name 
@@ -27,5 +56,12 @@
 		WHERE r.iso_code = #{isoCode}
 		ORDER BY r.name 
 	</select>
+	
+	<insert id="addAddress">
+		INSERT INTO address VALUES 
+		(#{id}, #{customerId}, #{title}, #{firstName}, #{lastName}, #{addressLine}, #{countryIso}, #{regionIso}, 
+		#{province}, #{city}, #{postcode}, #{phone}, #{contactAddress}, #{billingAddress}, #{shippingAddress})
+	</insert>
+	
 
 </mapper>

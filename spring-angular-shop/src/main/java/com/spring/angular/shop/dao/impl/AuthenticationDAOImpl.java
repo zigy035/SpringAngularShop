@@ -12,8 +12,8 @@ public class AuthenticationDAOImpl extends SqlSessionDaoSupport implements Authe
 		return authUser;
 	}
 
-	public void addCustomer(Customer customer) {
+	/*public void addCustomer(Customer customer) {
 		getSqlSession().insert("addCustomer", customer);
-	}
+	}*/
 
 }

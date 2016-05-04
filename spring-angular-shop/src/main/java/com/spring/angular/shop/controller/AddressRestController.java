@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.angular.shop.model.Country;
 import com.spring.angular.shop.model.Region;
+import com.spring.angular.shop.model.Title;
 import com.spring.angular.shop.service.AddressService;
 
 @RestController
@@ -21,6 +22,12 @@ public class AddressRestController {
 	
 	@Autowired
 	private AddressService addressService; 
+	
+	@RequestMapping(value = "/titles", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Title> loadTitles() {
+		return addressService.getTitles();
+	}
 	
 	@RequestMapping(value = "/countries", method = RequestMethod.GET)
 	@ResponseBody
