@@ -29,8 +29,10 @@
 	</select>
 	
 	<select id="getCartItem" resultMap="cartItemResultMap">
-		SELECT ci.id, ci.cart_id, ci.quantity 
+		SELECT ci.id, ci.cart_id, p.id AS product_id, p.name AS product_name, 
+			p.price AS product_price, ci.quantity 
 		FROM cart_item AS ci 
+			JOIN product AS p ON ci.product_id = p.id
 		WHERE ci.product_id = #{productId} AND ci.cart_id = #{cartId}
 	</select>
 	

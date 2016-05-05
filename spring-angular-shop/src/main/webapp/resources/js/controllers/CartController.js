@@ -12,7 +12,7 @@ cartApp.controller('cartController', function($scope, $http) {
 	};
 
     $scope.updateCartItem = function(itemId, quantity) {
-		$http({method: 'PUT', url: "cart-rest/update/" +  itemId + "/" + quantity}).
+		$http({method: 'GET', url: "cart-rest/update/" +  itemId + "/" + quantity}).
 		then(function(response) {
 			$scope.loadCartData();
 		},
@@ -23,7 +23,7 @@ cartApp.controller('cartController', function($scope, $http) {
     };
 
     $scope.deleteCartItem = function(itemId) {
-		$http({method: 'DELETE', url: "cart-rest/delete/" +  itemId}).
+		$http({method: 'GET', url: "cart-rest/delete/" +  itemId}).
 		then(function(response) {
 			$scope.loadCartData();
 		});

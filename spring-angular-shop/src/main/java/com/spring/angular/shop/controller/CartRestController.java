@@ -1,14 +1,13 @@
 package com.spring.angular.shop.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.angular.shop.model.CartItem;
@@ -22,49 +21,41 @@ public class CartRestController extends AbstractController {
 	private CartService cartService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<CartItem>> loadCartData() {
+	@ResponseBody
+	public List<CartItem> loadCartData() {
 		
-		List<CartItem> cartData = cartService.getCartItems(getAuthUser().getId());
-        if (CollectionUtils.isEmpty(cartData)) {
-            return new ResponseEntity<List<CartItem>>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<List<CartItem>>(cartData, HttpStatus.OK);
+		if (getAuthUser() == null) {
+			return new ArrayList<CartItem>();
+		}
+		return cartService.getCartItems(getAuthUser().getId());
 	}
 	
 	@RequestMapping(value = "/add/{productId}", method = RequestMethod.POST)
-    public ResponseEntity<CartItem> addItem(@PathVariable("productId") String productId) {
+	@ResponseBody
+	public CartItem addItem(@PathVariable("productId") String productId) {
 		
+		if (getAuthUser() == null) {
+			return null;
+		}
 		CartItem cartItem = cartService.addProductToCart(productId, getAuthUser().getId());
-		return new ResponseEntity<CartItem>(cartItem, HttpStatus.OK);
+		return cartItem;
 	}
 	
-	@RequestMapping(value = "/update/{itemId}/{quantity}", method = RequestMethod.PUT)
-    public ResponseEntity<CartItem> updateItem(@PathVariable("itemId") String itemId, 
+	@RequestMapping(value = "/update/{itemId}/{quantity}", method = RequestMethod.GET)
+	@ResponseBody
+	public CartItem updateItem(@PathVariable("itemId") String itemId, 
     		@PathVariable("quantity") Integer quantity) {
 		
-        System.out.println("Updating item " + itemId);
-         
-        CartItem item = cartService.updateCartItem(itemId, quantity);
-         
-        if (item == null) {
-            System.out.println("Item with id " + itemId + " not found");
-            return new ResponseEntity<CartItem>(HttpStatus.NOT_FOUND);
-        }
-        
-        return new ResponseEntity<CartItem>(item, HttpStatus.OK);
+        CartItem cartItem = cartService.updateCartItem(itemId, quantity);
+        return cartItem;
     }
 	
-	@RequestMapping(value = "/delete/{itemId}", method = RequestMethod.DELETE)
-    public ResponseEntity<CartItem> deleteItem(@PathVariable("itemId") String itemId) {
-        System.out.println("Deleting item " + itemId);
-         
-        CartItem item = cartService.deleteCartItem(itemId);
-         
-        if (item == null) {
-            System.out.println("Item with id " + itemId + " not found");
-            return new ResponseEntity<CartItem>(HttpStatus.NOT_FOUND);
-        }
- 
-        return new ResponseEntity<CartItem>(item, HttpStatus.OK);
+	@RequestMapping(value = "/delete/{itemId}", method = RequestMethod.GET)
+	@ResponseBody
+	public CartItem deleteItem(@PathVariable("itemId") String itemId) {
+        
+		CartItem item = cartService.deleteCartItem(itemId);
+        return item;
     }
+	
 }

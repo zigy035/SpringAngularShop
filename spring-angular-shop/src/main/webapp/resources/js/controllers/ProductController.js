@@ -14,10 +14,27 @@ productApp.controller('productController', function($scope, $http) {
 	$scope.addCartItem = function(productId) {
 		$http({method: 'POST', url: "cart-rest/add/" + productId}).
 		then(function(response) {
-			// Some indication needed here...
+			
+			console.log(response);
+			
+			$.colorbox({
+				transition: 'fade',
+//				href: '#addProductInfo', 
+				href: 'resources/html/addProductInfo.jsp', 
+				open: true,
+				onComplete: function() {
+					$.colorbox.resize();
+					$('#prodName').html('<b>Product:</b>&nbsp;&nbsp;&nbsp;' + response.data.productName);
+					$('#cartQty').html('<b>Quantity:</b>&nbsp;&nbsp;' + response.data.quantity);
+				},
+				onClosed: function() {
+					
+				}
+			});
+			
 		});
     };
-	
+    
 	$scope.loadProducts();
 	
 });

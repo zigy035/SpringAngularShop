@@ -366,7 +366,8 @@ span.error, p.error {
 	float: left;
 	border: 1px solid #ccc;
 	width: 150px;
-	box-sizing: border-box;
+/* 	box-sizing: border-box; */
+	margin: 0 15px 15px 0;
 }
 
 .productItem img {
@@ -400,15 +401,67 @@ span.error, p.error {
 	padding: 6px 2px;
 	border: 1px solid #0099cc;
 	float: left;
+}
+
+.btn_button {
     width: 100%;
 }
+
+.btn_link {
+    width: 97%;
+}
+
 
 .content_right {
 	float: right;
 	margin-right: -10px;
 }
 
+#addProductInfo {
+	padding: 10px;
+	background: #fff;
+	width: 252px;
+	height: 370px;
+}
 
+#addProductInfo h3 {
+	padding: 2px;
+	float: left;
+	margin: 0;
+	font-size: 20px;
+}
 
+#addProductInfo a {
+	float: right;
+}
 
+#addProductInfo a img {
+	width: 24px;
+}
 
+.popupHeader {
+	width: 250px;
+	height: 36px;
+}
+
+.popupBody {
+	width: 250px;
+	padding: 2px;
+}
+
+.popupBody img {
+	width: 200px;
+    padding: 20px;
+    margin: 0;
+}
+
+.popupBody b {
+	margin: 0;
+	font-size: 14px;
+}
+
+.popupBody p {
+	margin: 0;
+	font-size: 14px;
+	padding-bottom: 14px;
+}

@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <h2>Products</h2>
 <div ng-app="productApp" ng-controller="productController">
 		
@@ -6,16 +9,18 @@
 			<img src="resources/images/product_na.gif"/>
 			<p>{{product.name}}</p>
 			<p>{{product.price}}</p>
-			<form ng-submit="addCartItem(product.id)" method="post">
-				<input type="submit" class="btn" value="Add to Cart"/>
-			</form>
+			<sec:authorize access="isAuthenticated()">
+				<form id="addItemForm" ng-submit="addCartItem(product.id)" method="post">
+					<a class="btn btn_link" href="javascript:void(0)" ng-click="addCartItem(product.id)">Add to Cart</a>
+				</form>
+			</sec:authorize>
+			<sec:authorize access="isAnonymous()">
+				<c:url var="loginURL" value="/login"/>
+				<a class="btn btn_link" href="${loginURL}">Add to Cart</a>
+			</sec:authorize>
 		</div>
 	</div>
 	
 	<script src="resources/js/controllers/ProductController.js"></script>
-	
-	<%-- <script src="<%=request.getContextPath()%>/resources/js/angular.min.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/angular-route.min.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/controllers/ProductController.js"></script> --%>
 	
 </div>
