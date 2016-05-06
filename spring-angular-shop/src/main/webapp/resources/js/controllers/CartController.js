@@ -8,6 +8,11 @@ cartApp.controller('cartController', function($scope, $http) {
 		then(function(response) {
 			console.log('Cart data!!!');
 			$scope.cartData = response.data;
+			
+			// To be calculated...
+			$scope.subtotal = 55;
+			$scope.deliveryCost = 8;
+			$scope.total = 63;
 		});
 	};
 
