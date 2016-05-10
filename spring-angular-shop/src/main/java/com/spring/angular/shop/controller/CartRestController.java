@@ -1,8 +1,5 @@
 package com.spring.angular.shop.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.angular.shop.dto.CartDTO;
 import com.spring.angular.shop.model.CartItem;
 import com.spring.angular.shop.service.CartService;
 
@@ -22,12 +20,12 @@ public class CartRestController extends AbstractController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public List<CartItem> loadCartData() {
+	public CartDTO loadCartData() {
 		
 		if (getAuthUser() == null) {
-			return new ArrayList<CartItem>();
+			return null;
 		}
-		return cartService.getCartItems(getAuthUser().getId());
+		return cartService.getCartData(getAuthUser().getId());
 	}
 	
 	@RequestMapping(value = "/add/{productId}", method = RequestMethod.POST)

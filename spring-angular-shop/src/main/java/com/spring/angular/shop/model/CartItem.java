@@ -10,6 +10,7 @@ public class CartItem {
 	private String productName;
 	private Double productPrice;
 	private Integer quantity;
+	private Double total;
 	
 	public CartItem() {
 		this.id = KeyGenerator.generate();
@@ -50,6 +51,12 @@ public class CartItem {
 	}
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+	public Double getTotal() {
+		return total;
+	}
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 	
 }

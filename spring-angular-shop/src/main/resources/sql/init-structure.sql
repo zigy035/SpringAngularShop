@@ -81,3 +81,14 @@ CREATE TABLE `region` (
   PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `tax` (
+  `code` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `region_code` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `percent` decimal(5,2) NOT NULL,
+  PRIMARY KEY (`code`),
+  UNIQUE KEY `tax_unique_key` (`region_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+

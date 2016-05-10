@@ -32,4 +32,9 @@ public class AddressDAOImpl extends SqlSessionDaoSupport implements AddressDAO {
 		getSqlSession().insert("addAddress", address);
 	}
 
+	@Override
+	public Address getShippingAddress(String customerId) {
+		return getSqlSession().selectOne("getShippingAddress", customerId);
+	}
+
 }

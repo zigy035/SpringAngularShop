@@ -7,12 +7,14 @@ cartApp.controller('cartController', function($scope, $http) {
 		$http({method: 'GET', url: "cart-rest"}).
 		then(function(response) {
 			console.log('Cart data!!!');
-			$scope.cartData = response.data;
+			console.log(response.data);
+			
+			$scope.cartItems = response.data.items;
 			
 			// To be calculated...
-			$scope.subtotal = 55;
-			$scope.deliveryCost = 8;
-			$scope.total = 63;
+			$scope.subtotal = response.data.subtotal;
+			$scope.deliveryCost = response.data.deliveryCost;
+			$scope.total = response.data.total;
 		});
 	};
 

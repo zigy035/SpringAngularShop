@@ -39,6 +39,16 @@
 		<result property="shippingAddress" column="shipping_address" jdbcType="BOOLEAN" />
 	</resultMap>
 	
+	<resultMap id="addressTaxResultMap" type="com.spring.angular.shop.model.Address">
+		<result property="id" column="id" jdbcType="VARCHAR" />
+		<result property="customerId" column="customer_id" jdbcType="VARCHAR" />
+		<result property="countryIso" column="country_iso" jdbcType="VARCHAR" />
+		<result property="regionIso" column="region_iso" jdbcType="VARCHAR" />
+		<result property="contactAddress" column="contact_address" jdbcType="BOOLEAN" />
+		<result property="billingAddress" column="billing_address" jdbcType="BOOLEAN" />
+		<result property="shippingAddress" column="shipping_address" jdbcType="BOOLEAN" />
+	</resultMap>
+	
 	<select id="getTitles" resultMap="titleResultMap">
 		SELECT t.code, t.name 
 		FROM title AS t
@@ -56,12 +66,19 @@
 		WHERE r.iso_code = #{isoCode}
 		ORDER BY r.name 
 	</select>
+
+	<select id="getShippingAddress" resultMap="addressTaxResultMap">
+		SELECT a.id, a.customer_id, a.country_iso, a.region_iso, 
+			a.contact_address, a.billing_address, a.shipping_address 
+		FROM address AS a 
+		WHERE a.customer_id = #{customerId} AND a.shipping_address = 1
+	</select>
 	
 	<insert id="addAddress">
 		INSERT INTO address VALUES 
-		(#{id}, #{customerId}, #{title}, #{firstName}, #{lastName}, #{addressLine}, #{countryIso}, #{regionIso}, 
-		#{province}, #{city}, #{postcode}, #{phone}, #{contactAddress}, #{billingAddress}, #{shippingAddress})
+		(#{id}, #{customerId}, #{title}, #{firstName}, #{lastName}, #{addressLine}, 
+		#{countryIso}, #{regionIso}, #{province}, #{city}, #{postcode}, #{phone}, 
+		#{contactAddress}, #{billingAddress}, #{shippingAddress})
 	</insert>
-	
 
 </mapper>

@@ -28,6 +28,12 @@ INSERT INTO `country` (`code`, `name`) VALUES
 ('CA', 'Canada'),
 ('US', 'United States');
 
+
+INSERT INTO `tax` (`code`, `region_code`, `percent`) VALUES 
+('TX-CA-AB', 'CA-AB', 12.0),
+('TX-CA-ON', 'CA-ON', 11.0),
+('TX-CA-QC', 'CA-QC', 10.0);
+
 INSERT INTO `region` (`code`, `iso_code`, `name`) VALUES 
 ('CA-AB', 'CA', 'Alberta'),
 ('CA-BC', 'CA', 'British Columbia'),

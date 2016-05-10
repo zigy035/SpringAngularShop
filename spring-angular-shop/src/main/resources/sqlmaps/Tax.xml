@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="taxMap">
+	
+	<resultMap id="taxResultMap" type="com.spring.angular.shop.model.Tax">
+		<result property="code" column="code" jdbcType="VARCHAR" />
+		<result property="regionCode" column="region_code" jdbcType="VARCHAR" />
+		<result property="percent" column="percent" jdbcType="DECIMAL" />
+	</resultMap>
+
+	<select id="getTax" resultMap="taxResultMap">
+		SELECT t.code, t.region_code, t.percent 
+		FROM tax AS t
+		WHERE t.region_code = #{regionCode} 
+	</select>
+
+</mapper>

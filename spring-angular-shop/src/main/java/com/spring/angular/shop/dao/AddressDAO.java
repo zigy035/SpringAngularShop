@@ -16,4 +16,6 @@ public interface AddressDAO {
 	List<Region> getRegions(String isoCode);
 	
 	void addAddress(Address address);
+
+	Address getShippingAddress(String customerId);
 }

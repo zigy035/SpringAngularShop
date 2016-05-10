@@ -254,6 +254,14 @@ table.striped tr.even td {
 	font-weight: bold;
 }
 
+.order_total tr td:nth-child(1) {
+	text-align: left;
+}
+
+.order_total tr td:nth-child(2) {
+	text-align: right;
+}
+
 
 input.error, select.error 
 { 

@@ -40,6 +40,7 @@
 				<value>classpath:sqlmaps/CartItem.xml</value>
 				<value>classpath:sqlmaps/Product.xml</value>
 				<value>classpath:sqlmaps/Customer.xml</value>
+				<value>classpath:sqlmaps/Tax.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -52,6 +53,10 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 	
+	<bean id="taxDAO" class="com.spring.angular.shop.dao.impl.TaxDAOImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
 	<bean id="addressDAO" class="com.spring.angular.shop.dao.impl.AddressDAOImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
@@ -66,6 +71,8 @@
 	
 	<bean id="cartService" class="com.spring.angular.shop.service.impl.CartServiceImpl">
 		<property name="cartDAO" ref="cartDAO"/>
+		<property name="addressDAO" ref="addressDAO"/>
+		<property name="taxDAO" ref="taxDAO"/>
 	</bean>
 	
 	<bean id="addressService" class="com.spring.angular.shop.service.impl.AddressServiceImpl">

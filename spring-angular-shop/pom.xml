@@ -8,7 +8,7 @@
 	<version>1.0</version>
 
 	<properties>
-		<spring.version>4.1.2.RELEASE</spring.version>
+		<spring.version>4.1.6.RELEASE</spring.version>
 		<springsec.version>4.0.2.RELEASE</springsec.version>
 		<mybatis.version>3.2.2</mybatis.version>
 		<tiles.version>3.0.5</tiles.version>

@@ -5,12 +5,7 @@
 		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security-4.0.xsd">
-	
-<!--     <http pattern="/templates/**" security="none"/>    
-    <http pattern="/tags/**" security="none"/>
- 	<http pattern="/styles/**" security="none"/>
- --> 	
- 	
+	 	
  	<http pattern="/resources/**" security="none"/>
     	
     <!-- enable use-expressions -->
