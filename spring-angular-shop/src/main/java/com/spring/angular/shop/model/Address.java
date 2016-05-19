@@ -11,7 +11,9 @@ public class Address {
 	private String lastName;
 	private String addressLine;
 	private String countryIso;
+	private String countryLocName;
 	private String regionIso;
+	private String regionLocName;
 	private String province;
 	private String city;
 	private String postcode;
@@ -66,11 +68,23 @@ public class Address {
 	public void setCountryIso(String countryIso) {
 		this.countryIso = countryIso;
 	}
+	public String getCountryLocName() {
+		return countryLocName;
+	}
+	public void setCountryLocName(String countryLocName) {
+		this.countryLocName = countryLocName;
+	}
 	public String getRegionIso() {
 		return regionIso;
 	}
 	public void setRegionIso(String regionIso) {
 		this.regionIso = regionIso;
+	}
+	public String getRegionLocName() {
+		return regionLocName;
+	}
+	public void setRegionLocName(String regionLocName) {
+		this.regionLocName = regionLocName;
 	}
 	public String getProvince() {
 		return province;

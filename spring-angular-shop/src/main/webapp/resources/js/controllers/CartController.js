@@ -10,8 +10,6 @@ cartApp.controller('cartController', function($scope, $http) {
 			console.log(response.data);
 			
 			$scope.cartItems = response.data.items;
-			
-			// To be calculated...
 			$scope.subtotal = response.data.subtotal;
 			$scope.deliveryCost = response.data.deliveryCost;
 			$scope.total = response.data.total;

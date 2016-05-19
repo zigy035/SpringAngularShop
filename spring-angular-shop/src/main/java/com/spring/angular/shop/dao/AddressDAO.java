@@ -18,4 +18,10 @@ public interface AddressDAO {
 	void addAddress(Address address);
 
 	Address getShippingAddress(String customerId);
+	
+	Address getBillingAddress(String customerId);
+
+	Address getAddress(String addressId);
+
+	void updateAddress(Address address);
 }

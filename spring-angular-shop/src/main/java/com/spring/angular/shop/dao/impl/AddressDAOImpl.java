@@ -37,4 +37,19 @@ public class AddressDAOImpl extends SqlSessionDaoSupport implements AddressDAO {
 		return getSqlSession().selectOne("getShippingAddress", customerId);
 	}
 
+	@Override
+	public Address getBillingAddress(String customerId) {
+		return getSqlSession().selectOne("getBillingAddress", customerId);
+	}
+
+	@Override
+	public Address getAddress(String addressId) {
+		return getSqlSession().selectOne("getAddress", addressId);
+	}
+
+	@Override
+	public void updateAddress(Address address) {
+		getSqlSession().update("updateAddress", address);
+	}
+
 }

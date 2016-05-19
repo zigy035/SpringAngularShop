@@ -248,6 +248,7 @@ table.striped tr.even td {
 .order_total {
 	float: right;
 	width: 35%;
+	margin: 15px !important;
 }
 
 .order_total tfoot tr td {
@@ -454,6 +455,71 @@ span.error, p.error {
     width: 97%;
 }
 
+.btn_checkout {
+	width: 100px;
+	float: right;
+	margin: 15px;
+}
+
+.btn_edit_address {
+	width: 100px;
+	float: left;
+/* 	margin: 5px; */
+}
+
+.cart_content {
+	width: 100%;
+	float: left;
+}
+
+.addressGrid {
+/* 	margin-left: 24px; */
+}
+
+.addressItem {
+	background-color: #ccc;
+	width: 30%;
+	float: left;
+	margin: 7px;
+	padding: 10px;
+	min-height: 180px;
+}
+
+.delTypeItem {
+	background-color: #ccc;
+	width: 20%;
+	float: left;
+	margin: 7px;
+	padding: 10px;
+	min-height: 180px;
+}
+
+.delTypeItem label {
+	font-size: 12px;
+}
+
+.addressItem table {
+	margin-bottom: 10px;
+}
+
+
+
+.addressItem h3 {
+	margin: 0 0 10px 0;
+}
+
+.checkout_address tr td {
+	text-align: left;
+	font-size: 12px;
+}
+
+.checkout_address tr td:nth-child(1) {
+	font-weight: bold;
+}
+
+.checkout_address tr td:nth-child(2) {
+	padding-left: 20px;
+}
 
 .content_right {
 	float: right;
@@ -482,30 +548,91 @@ span.error, p.error {
 	width: 24px;
 }
 
-.popupHeader {
+#addProductInfo .popupHeader {
 	width: 250px;
 	height: 36px;
 }
 
-.popupBody {
+#addProductInfo .popupBody {
 	width: 250px;
 	padding: 2px;
 }
 
-.popupBody img {
+#addProductInfo .popupBody img {
 	width: 200px;
     padding: 20px;
     margin: 0;
 }
 
-.popupBody b {
+#addProductInfo .popupBody b {
 	margin: 0;
 	font-size: 14px;
 }
 
-.popupBody p {
+#addProductInfo .popupBody p {
 	margin: 0;
 	font-size: 14px;
 	padding-bottom: 14px;
 }
+
+#editAddress {
+	padding: 10px;
+	background: #fff;
+	width: 310px;
+	height: 310px;
+}
+
+#editAddress h3 {
+	padding: 2px;
+	float: left;
+	margin: 0;
+	font-size: 20px;
+}
+
+#editAddress a {
+	float: right;
+}
+
+#editAddress .popupHeader {
+	width: 300px;
+	height: 36px;
+}
+
+#editAddress .popupBody {
+	width: 300px;
+	padding: 2px;
+}
+
+#addressForm table {
+	margin-bottom: 20px;
+}	
+
+#addressForm table tr td:nth-child(1) {
+	width: 110px;
+}
+
+#addressForm table tr td:nth-child(2) {
+	width: 180px;
+}
+
+
+#addressForm label {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#addressForm a {
+	width: 125px;
+/*     float: left; */
+/*     margin: 5px; */
+}
+
+#addressForm input {
+	width: 180px;
+}
+
+#addressForm select {
+	width: 180px;
+}
+
 

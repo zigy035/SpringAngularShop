@@ -42,6 +42,11 @@
         <put-attribute name="title" value="Cart Page" />
         <put-attribute name="body" value="/resources/pages/cart.jsp" />
     </definition>
+    
+    <definition name="checkout" extends="baseLayout">
+        <put-attribute name="title" value="Checkout Page" />
+        <put-attribute name="body" value="/resources/pages/checkout.jsp" />
+    </definition>
 
     <definition name="myAccount" extends="baseLayout">
         <put-attribute name="title" value="My Account" />
