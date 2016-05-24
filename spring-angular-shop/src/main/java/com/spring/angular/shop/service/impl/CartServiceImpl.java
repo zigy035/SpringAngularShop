@@ -71,19 +71,17 @@ public class CartServiceImpl implements CartService {
 		return item;
 	}
 
-	@Override
+	/*@Override
 	public List<CartItem> getCartItems(String customerId) {
-		Cart cart = cartDAO.getCart(customerId);
-		if (cart == null) {
-			return new ArrayList<CartItem>();
-		}
-		return cartDAO.getCartItems(cart.getId());
-	}
+		
+	}*/
 
 	@Override
 	public CartDTO getCartData(String customerId) {
 		
-		List<CartItem> items = getCartItems(customerId);
+		Cart cart = cartDAO.getCart(customerId);
+		
+		List<CartItem> items = cartDAO.getCartItems(cart.getId());
 		if (items.isEmpty()) {
 			return null;
 		}
@@ -109,12 +107,25 @@ public class CartServiceImpl implements CartService {
 			}
 		}
 		
-		
 		CartDTO cartDTO = new CartDTO();
 		cartDTO.setItems(items);
 		cartDTO.setSubtotal(subtotal);
 		cartDTO.setDeliveryCost(deliveryCost);
 		cartDTO.setTotal(subtotal + deliveryCost);
+		cartDTO.setDeliveryType(cart.getDeliveryTypeCode());
+		cartDTO.setPaymentMethod(cart.getPaymentMethodCode());
+		
+		return cartDTO;
+	}
+	
+	@Override
+	public CartDTO getCheckoutCartData(String customerId, String deliveryType) {
+		
+		CartDTO cartDTO = getCartData(customerId);
+		if ("NEXT_DAY".equals(deliveryType)) {
+			cartDTO.setDeliveryCost(cartDTO.getDeliveryCost() + 15.0);
+			cartDTO.setTotal(cartDTO.getSubtotal() + cartDTO.getDeliveryCost());
+		}
 		
 		return cartDTO;
 	}

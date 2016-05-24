@@ -13,7 +13,9 @@ public interface CartService {
 
 	CartItem deleteCartItem(String itemId);
 	
-	List<CartItem> getCartItems(String customerId);
+//	List<CartItem> getCartItems(String customerId);
 	
 	CartDTO getCartData(String customerId);
+	
+	CartDTO getCheckoutCartData(String customerId, String deliveryType);
 }

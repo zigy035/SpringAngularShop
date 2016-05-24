@@ -2,6 +2,7 @@ package com.spring.angular.shop.controller;
 
 import java.util.Locale;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.angular.shop.dto.AddressDTO;
 import com.spring.angular.shop.dto.CartDTO;
+import com.spring.angular.shop.form.CheckoutForm;
 import com.spring.angular.shop.model.Address;
 import com.spring.angular.shop.service.AddressService;
 import com.spring.angular.shop.service.CartService;
+import com.spring.angular.shop.service.CheckoutService;
 
 @Controller
 @RequestMapping("/checkout")
@@ -30,6 +33,8 @@ public class CheckoutController extends AbstractController {
 	private static final String REGION_DELIMITER = "-";
 	public static final String COUNTRY_KEY_PATTERN = "country.%s";
 	public static final String REGION_KEY_PATTERN = "region.%s.%s";
+	private static final String DEFAULT_DELIVERY_TYPE = "default.delivery.type";
+	private static final String DEFAULT_PAYMENT_METHOD = "default.payment.method";
 	
 	@Autowired
 	private AddressService addressService; 
@@ -38,10 +43,35 @@ public class CheckoutController extends AbstractController {
 	private CartService cartService;
 	
 	@Autowired
+	private CheckoutService checkoutService;
+	
+	@Autowired
 	private MessageSource messageSource;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String showCheckoutPage(Model model) {
+		
+		//check if delivery type and payment method are set.
+		CartDTO cartData = cartService.getCartData(getAuthUser().getId());
+		CheckoutForm checkoutForm = new CheckoutForm();
+		
+		Locale locale = LocaleContextHolder.getLocale();
+		if (StringUtils.isEmpty(cartData.getDeliveryType())) {
+			checkoutForm.setDeliveryType(messageSource.getMessage(DEFAULT_DELIVERY_TYPE, null, locale));
+		} else {
+			checkoutForm.setDeliveryType(cartData.getDeliveryType());
+		}
+
+		if (StringUtils.isEmpty(cartData.getPaymentMethod())) {
+			checkoutForm.setPaymentMethod(messageSource.getMessage(DEFAULT_PAYMENT_METHOD, null, locale));
+		} else {
+			checkoutForm.setPaymentMethod(cartData.getPaymentMethod());
+		}
+
+		model.addAttribute("checkoutForm", checkoutForm);
+		model.addAttribute("deliveryTypes", checkoutService.getDeliveryTypes());
+		model.addAttribute("paymentMethods", checkoutService.getPaymentMethods());
+		
 		return "checkout";
 	}
 	
@@ -60,11 +90,8 @@ public class CheckoutController extends AbstractController {
 		if (getAuthUser() == null) {
 			return null;
 		}
-		CartDTO cartDTO = cartService.getCartData(getAuthUser().getId());
-		if ("NEXT_DAY".equals(deliveryType)) {
-			cartDTO.setDeliveryCost(cartDTO.getDeliveryCost() + 15.0);
-			cartDTO.setTotal(cartDTO.getSubtotal() + cartDTO.getDeliveryCost());
-		}
+		CartDTO cartDTO = cartService.getCheckoutCartData(getAuthUser().getId(), deliveryType);
+		
 		return cartDTO;
 	}
 	

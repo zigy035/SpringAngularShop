@@ -4,7 +4,7 @@ var addressApp = angular.module('addressApp', ['ngCookies']);
 addressApp.controller('addressController', function($scope, $http, $cookieStore) {
 
 	$scope.loadTitles = function() {
-		$http({method: 'GET', url: "address-rest/titles"}).
+		$http({method: 'GET', url: "address/rest/titles"}).
 		then(function(response) {
 			$scope.titles = response.data;
 			console.log('Titleees: ' + response.data);
@@ -27,7 +27,7 @@ addressApp.controller('addressController', function($scope, $http, $cookieStore)
 	
 	// Shipping Country Region
 	$scope.loadShippingCountries = function() {	
-		$http({method: 'GET', url: "address-rest/countries"}).
+		$http({method: 'GET', url: "address/rest/countries"}).
 		then(function(response) {
 
 			$scope.shippingCountries = response.data;
@@ -54,7 +54,7 @@ addressApp.controller('addressController', function($scope, $http, $cookieStore)
 			$cookieStore.remove('shippingRegion');
 			
 		} else {
-			$http({method: 'GET', url: "address-rest/regions/" + shippingCountry}).
+			$http({method: 'GET', url: "address/rest/regions/" + shippingCountry}).
 			then(function(response) {
 				
 				var shippingRegion = $cookieStore.get('shippingRegion');
@@ -78,7 +78,7 @@ addressApp.controller('addressController', function($scope, $http, $cookieStore)
 	
 	// Billing Country Region
 	$scope.loadBillingCountries = function() {	
-		$http({method: 'GET', url: "address-rest/countries"}).
+		$http({method: 'GET', url: "address/rest/countries"}).
 		then(function(response) {
 			
 			$scope.billingCountries = response.data;
@@ -105,7 +105,7 @@ addressApp.controller('addressController', function($scope, $http, $cookieStore)
 			$cookieStore.remove('billingRegion');
 			
 		} else {
-			$http({method: 'GET', url: "address-rest/regions/" + billingCountry}).
+			$http({method: 'GET', url: "address/rest/regions/" + billingCountry}).
 			then(function(response) {
 				
 				var billingRegion = $cookieStore.get('billingRegion');

@@ -1,10 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <h2>Checkout</h2>
 <div ng-app="checkoutApp" ng-controller="checkoutController">
-		
+	
+	<c:url var="placeOrderURL" value="/placeOrder" />
+	<form:form commandName="checkoutForm" action="${placeOrderURL}">
+	
 	<div class="addressGrid">
 		<div class="addressItem">
 			<h3>Payment Address</h3>
@@ -68,18 +72,34 @@
 			<a class="btn btn_edit_address" href="javascript:void(0)" 
 				ng-click="editAddress(shippingAddress.id)">Edit Address</a>
 		</div>
+		
 		<div class="delTypeItem">
 			<h3>Delivery Type</h3>
-			<input id="delTypeStd" type="radio" ng-model="deliveryType" 
-				value="STANDARD" ng-checked="true" ng-change="updateDeliveryCost(deliveryType)"/>
-			<label for="delTypeStd">Standard - FREE</label>
-			<br/>
-			<input id="delTypeNxd" type="radio" ng-model="deliveryType" 
-				value="NEXT_DAY" ng-change="updateDeliveryCost(deliveryType)"/>
-			<label for="delTypeNxd">Next day - $15</label>
+			<c:forEach items="${deliveryTypes}" var="deliveryType">
+			<p>
+				<form:radiobutton id="delType${deliveryType.code}" path="deliveryType" 
+					value="${deliveryType.code}" ng-model="delType" ng-change="updateDeliveryCost(delType)" 
+					ng-checked="${checkoutForm.deliveryType eq deliveryType.code ? true : false}"/>
+				<label for="delType${deliveryType.code}">
+					${deliveryType.name} - ${deliveryType.cost eq 0 ? 'FREE' : deliveryType.formattedCost} 
+					(${deliveryType.description})
+				</label>
+			</p>
+			</c:forEach>
+		</div>
+		<div class="delTypeItem">
+			<h3>Payment Method</h3>
+			<c:forEach items="${paymentMethods}" var="paymentMethod">
+			<p>
+				<form:radiobutton id="payMethod${paymentMethod.code}" path="paymentMethod" value="${paymentMethod.code}" 
+					ng-checked="${checkoutForm.paymentMethod eq paymentMethod.code}"/>
+				<label for="payMethod${paymentMethod.code}">${paymentMethod.name}</label>
+			</p>
+			</c:forEach>
 		</div>
 	</div>
-		
+	
+	<!-- 
 	<table class="striped cart_items" ng-show="cartItems">
 		<thead>
 			<tr>
@@ -104,6 +124,7 @@
 			</tr>
 		</tbody>
 	</table>
+	 -->	
 	
 	<div class="cart_content">
 		<table class="striped order_total" ng-show="cartItems">
@@ -122,9 +143,10 @@
 	</div>
 	
 	<div class="cart_content">
-		<c:url var="placeorderURL" value="/placeorder"/>
-		<a class="btn btn_checkout" href="${placeorderURL}">Place Order</a>
+		<input class="btn btn_checkout" type="submit" value="Place Order"/>
 	</div>
+	
+	</form:form>
 	
 	<script type="text/ng-template" id="checkoutEditAddress">
 	
@@ -142,14 +164,14 @@
 					</tr>
 					<tr>
 						<td><label for="addressLine">Address Line <b style="color:red">*</b></label></td>
-						<td><input ng-model="address.addressLine" type="text"/></td>
+						<td><input ng-model="address.addressLine" type="text" required/></td>
 					</tr>
 					<tr>
 						<td><label for="countryIso">Country <b style="color:red">*</b></label></td>
 						<td>
 							<select ng-model="address.countryIso" 
 								ng-options="country.code as country.name for country in countries"
-								ng-change="loadRegions(address.countryIso)">
+								ng-change="loadRegions(address.countryIso)" required>
 								<option value="">Select Country</option>
 							</select>
 						</td>
@@ -159,18 +181,18 @@
 						<td>
 							<select ng-model="address.regionIso" 
 								ng-options="region.code as region.name for region in regions"
-		 						ng-change="storeRegionData(address.regionIso)">
+		 						ng-change="storeRegionData(address.regionIso)" required>
 								<option value="">Select Region</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<td><label for="city">City <b style="color:red">*</b></label></td>
-						<td><input ng-model="address.city" type="text"/></td>
+						<td><input ng-model="address.city" type="text" required/></td>
 					</tr>
 					<tr>
 						<td><label for="postcode">Postcode <b style="color:red">*</b></label></td>
-						<td><input ng-model="address.postcode" type="text"/></td>
+						<td><input ng-model="address.postcode" type="text" required/></td>
 					</tr>
 					<tr>
 						<td><label for="phone">Phone </label></td>

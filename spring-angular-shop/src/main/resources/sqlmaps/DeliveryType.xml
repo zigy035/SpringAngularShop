@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="deliveryTypeMap">
+	
+	<resultMap id="deliveryTypeResultMap" type="com.spring.angular.shop.model.DeliveryType">
+		<result property="code" column="code" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+		<result property="cost" column="cost" jdbcType="DECIMAL" />
+		<result property="description" column="description" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getDeliveryTypes" resultMap="deliveryTypeResultMap">
+		SELECT t.code, t.name, t.cost, t.description 
+		FROM delivery_type AS t
+		ORDER BY t.cost
+	</select>
+	
+	<select id="getDeliveryType" resultMap="deliveryTypeResultMap">
+		SELECT t.code, t.name, t.cost, t.description 
+		FROM delivery_type AS t
+		WHERE t.code = #{code}
+	</select>
+
+</mapper>

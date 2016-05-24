@@ -4,7 +4,7 @@ var cartApp = angular.module('cartApp', []);
 cartApp.controller('cartController', function($scope, $http) {
 	
 	$scope.loadCartData = function() {	
-		$http({method: 'GET', url: "cart-rest"}).
+		$http({method: 'GET', url: "cart/rest"}).
 		then(function(response) {
 			console.log('Cart data!!!');
 			console.log(response.data);
@@ -17,7 +17,7 @@ cartApp.controller('cartController', function($scope, $http) {
 	};
 
     $scope.updateCartItem = function(itemId, quantity) {
-		$http({method: 'GET', url: "cart-rest/update/" +  itemId + "/" + quantity}).
+		$http({method: 'GET', url: "cart/rest/update/" +  itemId + "/" + quantity}).
 		then(function(response) {
 			$scope.loadCartData();
 		},
@@ -28,7 +28,7 @@ cartApp.controller('cartController', function($scope, $http) {
     };
 
     $scope.deleteCartItem = function(itemId) {
-		$http({method: 'GET', url: "cart-rest/delete/" +  itemId}).
+		$http({method: 'GET', url: "cart/rest/delete/" +  itemId}).
 		then(function(response) {
 			$scope.loadCartData();
 		});

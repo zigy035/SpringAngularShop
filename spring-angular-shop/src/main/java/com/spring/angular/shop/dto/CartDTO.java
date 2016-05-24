@@ -10,6 +10,8 @@ public class CartDTO {
 	private Double subtotal;
 	private Double deliveryCost;
 	private Double total;
+	private String deliveryType;
+	private String paymentMethod;
 	
 	public List<CartItem> getItems() {
 		return items;
@@ -35,5 +37,18 @@ public class CartDTO {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
+	public String getDeliveryType() {
+		return deliveryType;
+	}
+	public void setDeliveryType(String deliveryType) {
+		this.deliveryType = deliveryType;
+	}
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+	
 	
 }

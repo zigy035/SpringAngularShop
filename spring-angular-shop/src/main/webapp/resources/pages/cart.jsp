@@ -53,7 +53,7 @@
 		<p ng-show="!cartItems">Your cart is empty</p>
 	</div>
 	
-	<div class="cart_content">
+	<div class="cart_content" ng-show="cartItems">
 		<c:url var="checkoutURL" value="/checkout"/>
 		<a class="btn btn_checkout" href="${checkoutURL}">Checkout</a>
 	</div>

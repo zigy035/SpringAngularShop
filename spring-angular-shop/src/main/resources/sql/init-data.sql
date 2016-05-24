@@ -1,5 +1,15 @@
-INSERT INTO `cart` (`id`, `customer_id`, `created`) VALUES
-('CART1', 'CUSTOMER1', '2016-04-08 20:30:40');
+INSERT INTO `cart` (`id`, `customer_id`, `delivery_type_id`, `payment_method_id`, `created`) VALUES
+('CART1', 'CUSTOMER1', 'STANDARD', 'CREDIT_CARD', '2016-04-08 20:30:40');
+
+INSERT INTO `delivery_type` (`code`, `name`, `cost`, `description`) VALUES
+('STANDARD', 'Standard', 0.0,  'delivery in max. 10 days'),
+('NEXT_DAY', 'Next Day', 15.0, 'delivery in max. 3 days');
+
+INSERT INTO `payment_method` (`code`, `name`, `description`) VALUES
+('CREDIT_CARD', 'Credit Card', 'Credit Card'),
+('PAYPAL', 'PayPal', 'Paypal'),
+('CYBERSOURCE', 'Cybersource', 'Cybersource');
+
 
 INSERT INTO `cart_item` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
 ('CARTITEM1', 'CART1', 'PRODUCT1', 4),

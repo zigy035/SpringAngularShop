@@ -264,9 +264,10 @@ table.striped tr.even td {
 }
 
 
-input.error, select.error 
+input.error, select.error,
+input.ng-invalid, select.ng-invalid
 { 
-	border-color:red;
+	border: 1px solid red;
 }
 
 span.error, p.error { 
@@ -478,7 +479,7 @@ span.error, p.error {
 
 .addressItem {
 	background-color: #ccc;
-	width: 30%;
+	width: 45%;
 	float: left;
 	margin: 7px;
 	padding: 10px;
@@ -487,30 +488,40 @@ span.error, p.error {
 
 .delTypeItem {
 	background-color: #ccc;
-	width: 20%;
+	width: 45%;
 	float: left;
 	margin: 7px;
 	padding: 10px;
-	min-height: 180px;
+	height: 130px;
 }
 
 .delTypeItem label {
-	font-size: 12px;
+	font-size: 14px;
+}
+
+.delTypeItem h3 {
+	font-size: 16px;
+	margin: 0 0 10px 0;
+	text-transform: uppercase;
 }
 
 .addressItem table {
 	margin-bottom: 10px;
 }
 
-
-
 .addressItem h3 {
+	font-size: 16px;
 	margin: 0 0 10px 0;
+	text-transform: uppercase;
+}
+
+.checkout_address {
+	width: 100%;
 }
 
 .checkout_address tr td {
 	text-align: left;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .checkout_address tr td:nth-child(1) {
@@ -615,6 +626,9 @@ span.error, p.error {
 	width: 180px;
 }
 
+#addressForm table tr td p {
+	
+}
 
 #addressForm label {
 	font-size: 13px;

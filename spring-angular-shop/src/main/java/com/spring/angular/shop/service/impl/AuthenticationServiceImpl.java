@@ -65,7 +65,7 @@ public class AuthenticationServiceImpl implements AuthenticationService
 	}
 	
 	@Override
-	public void autoLogin(String username, String password) {
+	public UsernamePasswordAuthenticationToken autoLogin(String username, String password) {
 		
 		UserDetails user;
 		try {
@@ -89,7 +89,8 @@ public class AuthenticationServiceImpl implements AuthenticationService
 	    
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user, encodedPassword, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(token);
-        LOG.info(String.format("Auto login %s successfully!", username));
+//        LOG.info(String.format("Auto login %s successfully!", username));
+		return token;
 	}
 	
 	public Customer getAuthentication(String username) {

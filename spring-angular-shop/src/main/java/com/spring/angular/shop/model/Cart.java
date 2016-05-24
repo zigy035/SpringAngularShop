@@ -9,6 +9,8 @@ public class Cart {
 
 	private String id;
 	private String customerId;
+	private String deliveryTypeCode;
+	private String paymentMethodCode;
 	private Date created;
 	
 	public Cart() {}
@@ -32,6 +34,22 @@ public class Cart {
 
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
+	}
+
+	public String getDeliveryTypeCode() {
+		return deliveryTypeCode;
+	}
+
+	public void setDeliveryTypeCode(String deliveryTypeCode) {
+		this.deliveryTypeCode = deliveryTypeCode;
+	}
+
+	public String getPaymentMethodCode() {
+		return paymentMethodCode;
+	}
+
+	public void setPaymentMethodCode(String paymentMethodCode) {
+		this.paymentMethodCode = paymentMethodCode;
 	}
 
 	public Date getCreated() {

@@ -93,6 +93,7 @@ checkoutApp.controller('checkoutController', function($scope, $http, $cookieStor
 			if (response.data.shippingAddress) {
 				console.log('Shipping!');
 				$scope.shippingAddress = response.data;
+				$scope.updateDeliveryCost();
 			}
 			
 			if (response.data.billingAddress) {
@@ -103,21 +104,9 @@ checkoutApp.controller('checkoutController', function($scope, $http, $cookieStor
     };
     
 	$scope.loadCountries = function() {	
-		$http({method: 'GET', url: "address-rest/countries"}).
+		$http({method: 'GET', url: "address/rest/countries"}).
 		then(function(response) {
-
-			console.log("Countries:" + response.data);
 			$scope.countries = response.data;
-			
-			var country = $cookieStore.get('country');
-			
-			if (country != null) {
-				$scope.country = country;
-				$scope.loadRegions(country);
-			} else {
-				$scope.country = '';
-			}
-			
 		});
 	};
 	
@@ -125,23 +114,10 @@ checkoutApp.controller('checkoutController', function($scope, $http, $cookieStor
 		if (country != 'US' && country != 'CA') {
 			$scope.country = '';
 			$scope.regions = null;
-			$scope.region = '';
-			
-			$cookieStore.remove('country');
-			$cookieStore.remove('region');
-			
+			$scope.region = '';			
 		} else {
-			$http({method: 'GET', url: "address-rest/regions/" + country}).
+			$http({method: 'GET', url: "address/rest/regions/" + country}).
 			then(function(response) {
-				
-				var region = $cookieStore.get('region');
-				if (region != null) {
-					$scope.address.region = region;
-				} else {
-					$scope.address.region = '';
-				}
-				
-				$cookieStore.put('country', country);
 				$scope.regions = response.data;
 			});
 		}

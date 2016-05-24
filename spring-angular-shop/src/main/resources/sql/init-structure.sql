@@ -20,9 +20,26 @@ CREATE TABLE `address` (
 CREATE TABLE `cart` (
   `id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `customer_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `delivery_type_code` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `payment_method_code` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created` timestamp COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cart_unique_key`(`id`, `customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `delivery_type` (
+  `code` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `cost` decimal(5,2) NOT NULL,
+  `description` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `payment_method` (
+  `code` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `cart_item` (

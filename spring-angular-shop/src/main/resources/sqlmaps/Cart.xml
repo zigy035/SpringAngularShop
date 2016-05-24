@@ -8,18 +8,20 @@
 	<resultMap id="cartResultMap" type="com.spring.angular.shop.model.Cart">
 		<result property="id" column="id" jdbcType="VARCHAR" />
 		<result property="customerId" column="customer_id" jdbcType="VARCHAR" />
+		<result property="deliveryTypeCode" column="delivery_type_code" jdbcType="VARCHAR" />
+		<result property="paymentMethodCode" column="payment_method_code" jdbcType="VARCHAR" />
 		<result property="created" column="created" jdbcType="TIMESTAMP" />
 	</resultMap>
 
 	<select id="getCart" resultMap="cartResultMap">
-		SELECT c.id, c.customer_id, c.created 
+		SELECT c.id, c.customer_id, c.delivery_type_code, c.payment_method_code, c.created 
 		FROM cart AS c 
 		WHERE c.customer_id = #{customerId}
 	</select>
 		
 	<insert id="createCart">
 		INSERT INTO cart VALUES 
-		(#{id}, #{customerId}, #{created})
+		(#{id}, #{customerId}, #{deliveryTypeCode}, #{paymentMethodCode}, #{created})
 	</insert>
 	
 	<delete id="deleteCart">
